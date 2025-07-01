@@ -1,56 +1,32 @@
-# Chapa Payment Integration – Node.js
+# 💵 Chapa Payment Integration – Node.js
 
-This project is a simple Chapa payment integration built with Node.js and Express.
+[![Node.js](https://img.shields.io/badge/node.js-v22.17.0-brightgreen?logo=node.js&style=flat-square)](https://nodejs.org/)
+[![License](https://img.shields.io/github/license/Awizardware/chapa-integration?style=flat-square)](https://github.com/Awizardware/chapa-integration/blob/main/LICENSE)
+[![GitHub last commit](https://img.shields.io/github/last-commit/Awizardware/chapa-integration?style=flat-square)](https://github.com/Awizardware/chapa-integration/commits/main)
+
+This is a simple Node.js application integrating Chapa’s payment API using Express and Axios.
+
+---
 
 ## 🔧 Features
 
 - POST `/pay` – Initialize payment
-- GET `/verify/:tx_ref` – Verify transaction status
+- GET `/verify/:tx_ref` – Verify transaction
+
+---
 
 ## 📦 Dependencies
 
+- Node.js (v18+)
 - Express
 - Axios
 - Dotenv
 
+---
+
 ## 🔐 Environment Setup
 
-Create a `.env` file with your Chapa Secret Key:
+Create a `.env` file with:
 
-CHAPA_SECRET_KEY=CHASECK_TEST-xxxxxxxxxxxxxxxx
-
-
-## 🚀 How to Run
-
-1. Clone or extract the folder
-2. Install packages:
-3. Run the server:
-
-
-4. Test endpoints using Postman:
-- `POST http://localhost:3000/pay`
-- `GET http://localhost:3000/verify/:tx_ref`
-
-## ✅ Sample Response
-
-### `/pay`
-```json
-{
-"checkout_url": "https://checkout.chapa.co/checkout/payment/xyz...",
-"tx_ref": "txn-123456789"
-}
-{
-  "status": "success",
-  "data": {
-    "status": "success",
-    "amount": 100,
-    "email": "example@gmail.com",
-    ...
-  }
-}
-
-
-🧑‍💻 Built by:
-Yonathan Tesfaye
-Email: yonatesfaye123@gmail.com
-Date: July 2025
+```env
+CHAPA_SECRET_KEY=CHASECK_TEST-xxxxxxxxxxxxxx
