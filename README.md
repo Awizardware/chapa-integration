@@ -30,3 +30,7 @@ Create a `.env` file with:
 
 ```env
 CHAPA_SECRET_KEY=CHASECK_TEST-xxxxxxxxxxxxxx
+
+## 📄 License
+
+MIT — Feel free to use and modify!

@@ -1,7 +1,31 @@
 {
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest"
+  },
   "dependencies": {
     "axios": "^1.10.0",
+    "cors": "^2.8.5",
     "dotenv": "^17.0.1",
     "express": "^5.1.0"
-  }
+  },
+  "devDependencies": {
+    "jest": "^30.0.3",
+    "supertest": "^7.1.1"
+  },
+  "name": "chapa-integration",
+  "version": "1.0.0",
+  "description": "[![Node.js](https://img.shields.io/badge/node.js-v22.17.0-brightgreen?logo=node.js&style=flat-square)](https://nodejs.org/)\r [![License](https://img.shields.io/github/license/Awizardware/chapa-integration?style=flat-square)](https://github.com/Awizardware/chapa-integration/blob/main/LICENSE)\r [![GitHub last commit](https://img.shields.io/github/last-commit/Awizardware/chapa-integration?style=flat-square)](https://github.com/Awizardware/chapa-integration/commits/main)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Awizardware/chapa-integration.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Awizardware/chapa-integration/issues"
+  },
+  "homepage": "https://github.com/Awizardware/chapa-integration#readme"
 }

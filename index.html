@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapa Payment Demo</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 2rem;
+      background: #f0fdf4;
+      color: #005c4b;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .header img {
+      width: 160px;
+      margin-bottom: 0.5rem;
+    }
+    .form-container {
+      max-width: 450px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 92, 75, 0.1);
+      transition: all 0.3s ease;
+    }
+    .form-container:hover {
+      transform: scale(1.01);
+    }
+    h2, h3 {
+      text-align: center;
+      color: #005c4b;
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #00b58b;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #009a75;
+    }
+    .alt-form {
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="https://chapa.link/asset/images/chapa_swirl.svg" alt="Chapa Logo">
+    <h1>Welcome to Chapa Payment</h1>
+    <p>Secure payment experience – Demo Integration</p>
+  </div>
+
+  <div class="form-container">
+    <h2>Dynamic Checkout</h2>
+    <form id="paymentForm">
+      <input type="text" id="first_name" placeholder="First Name" required />
+      <input type="text" id="last_name" placeholder="Last Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+      <input type="number" id="amount" placeholder="Amount (ETB)" required />
+      <button type="submit">Pay with Chapa</button>
+    </form>
+  </div>
+
+  <div class="form-container alt-form">
+    <h3>OR</h3>
+    <h2>HTML Hosted Checkout</h2>
+    <form method="POST" action="https://api.chapa.co/v1/hosted/pay">
+      <input type="hidden" name="public_key" value="CHAPUBK_TEST-lzlfsj90exXY5l5AxqnZAKC78dE29NIS" />
+      <input type="hidden" name="tx_ref" id="txRef" value="" />
+      <input type="hidden" name="amount" value="100" />
+      <input type="hidden" name="currency" value="ETB" />
+      <input type="hidden" name="email" value="yonatesfaye123@gmail.com" />
+      <input type="hidden" name="first_name" value="Yonathan" />
+      <input type="hidden" name="last_name" value="Tesfa" />
+      <input type="hidden" name="title" value="Test HTML Payment" />
+      <input type="hidden" name="description" value="Testing HTML integration with Chapa" />
+      <input type="hidden" name="logo" value="https://chapa.link/asset/images/chapa_swirl.svg" />
+      <input type="hidden" name="callback_url" value="https://webhook.site/test" />
+      <input type="hidden" name="return_url" value="https://example.com/thank-you" />
+      <input type="hidden" name="meta[title]" value="extra test info" />
+      <button type="submit">Pay Using HTML Form</button>
+    </form>
+  </div>
+
+  <script>
+    // Generate tx_ref dynamically for HTML form
+    document.getElementById('txRef').value = 'htmlform-tx-' + Date.now();
+
+    document.getElementById('paymentForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const payload = {
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: document.getElementById('email').value,
+        phone_number: document.getElementById('phone').value,
+        amount: document.getElementById('amount').value,
+      };
+
+      try {
+        const res = await fetch('http://localhost:3000/pay', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await res.json();
+        if (data.checkout_url) {
+          window.location.href = data.checkout_url;
+        } else {
+          alert('Payment failed to initialize.');
+          console.log(data);
+        }
+      } catch (error) {
+        alert('An error occurred');
+        console.error(error);
+      }
+    });
+  </script>
+</body>
+</html>
